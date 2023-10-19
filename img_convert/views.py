@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
 from .services.file_convert import convert
 from django.http import HttpResponse
-from django.core.files import File
+from django.views.decorators.csrf import csrf_exempt
 import os
 
 
+@csrf_exempt
 def simple_upload(request):
     if request.method == 'POST' and request.FILES['myfile']:
 

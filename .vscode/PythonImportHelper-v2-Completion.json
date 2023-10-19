@@ -72,11 +72,11 @@
         "documentation": {}
     },
     {
-        "label": "File",
-        "importPath": "django.core.files",
-        "description": "django.core.files",
+        "label": "csrf_exempt",
+        "importPath": "django.views.decorators.csrf",
+        "description": "django.views.decorators.csrf",
         "isExtraImport": true,
-        "detail": "django.core.files",
+        "detail": "django.views.decorators.csrf",
         "documentation": {}
     },
     {
