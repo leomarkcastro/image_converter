@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.core.files.storage import FileSystemStorage
+
+from shared.decorators.jwt_check import jwt_check
 from .services.file_convert import convert
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -30,3 +32,8 @@ def simple_upload(request):
             return response
 
     return render(request, 'core/index.html')
+
+
+@jwt_check
+def auth_page(request):
+    return HttpResponse(f"You are logged in as {request.user.id}.")

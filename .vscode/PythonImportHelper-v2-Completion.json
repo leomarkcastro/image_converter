@@ -64,6 +64,22 @@
         "documentation": {}
     },
     {
+        "label": "jwt_check",
+        "importPath": "shared.decorators.jwt_check",
+        "description": "shared.decorators.jwt_check",
+        "isExtraImport": true,
+        "detail": "shared.decorators.jwt_check",
+        "documentation": {}
+    },
+    {
+        "label": "HttpResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
         "label": "HttpResponse",
         "importPath": "django.http",
         "description": "django.http",
@@ -137,11 +153,43 @@
         "documentation": {}
     },
     {
+        "label": "TokenObtainPairView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenRefreshView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
+        "label": "TokenVerifyView",
+        "importPath": "rest_framework_simplejwt.views",
+        "description": "rest_framework_simplejwt.views",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.views",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
         "isExtraImport": true,
         "detail": "django.core.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "JWTAuthentication",
+        "importPath": "rest_framework_simplejwt.authentication",
+        "description": "rest_framework_simplejwt.authentication",
+        "isExtraImport": true,
+        "detail": "rest_framework_simplejwt.authentication",
         "documentation": {}
     },
     {
@@ -176,7 +224,7 @@
         "kind": 5,
         "importPath": "img_convert.urls",
         "description": "img_convert.urls",
-        "peekOfCode": "urlpatterns = [\n    path('simple', views.simple_upload, name='simple_upload'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('simple', views.simple_upload, name='simple_upload'),\n    path('auth', views.auth_page, name='auth'),\n]",
         "detail": "img_convert.urls",
         "documentation": {}
     },
@@ -186,6 +234,15 @@
         "importPath": "img_convert.views",
         "description": "img_convert.views",
         "peekOfCode": "def simple_upload(request):\n    if request.method == 'POST' and request.FILES['myfile']:\n        myfile = request.FILES['myfile']\n        fs = FileSystemStorage(\n            location=\"./converted_images\"\n        )\n        filename = fs.save(myfile.name, myfile)\n        # get file location in server\n        file_location = fs.path(filename)\n        jpg_to_png = file_location.replace(\".jpg\", \".png\")",
+        "detail": "img_convert.views",
+        "documentation": {}
+    },
+    {
+        "label": "auth_page",
+        "kind": 2,
+        "importPath": "img_convert.views",
+        "description": "img_convert.views",
+        "peekOfCode": "def auth_page(request):\n    return HttpResponse(f\"You are logged in as {request.user.id}.\")",
         "detail": "img_convert.views",
         "documentation": {}
     },
@@ -203,7 +260,7 @@
         "kind": 2,
         "importPath": "server.settings",
         "description": "server.settings",
-        "peekOfCode": "def combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nINSTALLED_APPS = combine_lists(\n    [\n    ],\n    [\n        'img_convert.apps.ImgConvertConfig',\n    ],\n    [\n        'django.contrib.admin',",
+        "peekOfCode": "def combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nINSTALLED_APPS = combine_lists(\n    [\n        'img_convert.apps.ImgConvertConfig',\n    ],\n    [\n        'rest_framework_simplejwt',\n    ],\n    [",
         "detail": "server.settings",
         "documentation": {}
     },
@@ -248,7 +305,7 @@
         "kind": 5,
         "importPath": "server.settings",
         "description": "server.settings",
-        "peekOfCode": "ALLOWED_HOSTS = os.getenv(\"SERVER_URL\", \"\").split(\n    ',') if os.getenv(\"SERVER_URL\") else []\nCSRF_TRUSTED_ORIGINS = os.getenv(\"CSRF_TRUSTED_ORIGINS\", \"\").split(\n    ',') if os.getenv(\"CSRF_TRUSTED_ORIGINS\") else []\n# Application definition\ndef combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nINSTALLED_APPS = combine_lists(\n    [\n    ],",
+        "peekOfCode": "ALLOWED_HOSTS = os.getenv(\"SERVER_URL\", \"\").split(\n    ',') if os.getenv(\"SERVER_URL\") else []\nCSRF_TRUSTED_ORIGINS = os.getenv(\"CSRF_TRUSTED_ORIGINS\", \"\").split(\n    ',') if os.getenv(\"CSRF_TRUSTED_ORIGINS\") else []\n# Application definition\ndef combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nINSTALLED_APPS = combine_lists(\n    [\n        'img_convert.apps.ImgConvertConfig',",
         "detail": "server.settings",
         "documentation": {}
     },
@@ -257,7 +314,7 @@
         "kind": 5,
         "importPath": "server.settings",
         "description": "server.settings",
-        "peekOfCode": "CSRF_TRUSTED_ORIGINS = os.getenv(\"CSRF_TRUSTED_ORIGINS\", \"\").split(\n    ',') if os.getenv(\"CSRF_TRUSTED_ORIGINS\") else []\n# Application definition\ndef combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nINSTALLED_APPS = combine_lists(\n    [\n    ],\n    [\n        'img_convert.apps.ImgConvertConfig',",
+        "peekOfCode": "CSRF_TRUSTED_ORIGINS = os.getenv(\"CSRF_TRUSTED_ORIGINS\", \"\").split(\n    ',') if os.getenv(\"CSRF_TRUSTED_ORIGINS\") else []\n# Application definition\ndef combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nINSTALLED_APPS = combine_lists(\n    [\n        'img_convert.apps.ImgConvertConfig',\n    ],\n    [",
         "detail": "server.settings",
         "documentation": {}
     },
@@ -266,7 +323,7 @@
         "kind": 5,
         "importPath": "server.settings",
         "description": "server.settings",
-        "peekOfCode": "INSTALLED_APPS = combine_lists(\n    [\n    ],\n    [\n        'img_convert.apps.ImgConvertConfig',\n    ],\n    [\n        'django.contrib.admin',\n        'django.contrib.auth',\n        'django.contrib.contenttypes',",
+        "peekOfCode": "INSTALLED_APPS = combine_lists(\n    [\n        'img_convert.apps.ImgConvertConfig',\n    ],\n    [\n        'rest_framework_simplejwt',\n    ],\n    [\n        'django.contrib.admin',\n        'django.contrib.auth',",
         "detail": "server.settings",
         "documentation": {}
     },
@@ -284,7 +341,7 @@
         "kind": 5,
         "importPath": "server.settings",
         "description": "server.settings",
-        "peekOfCode": "ROOT_URLCONF = 'server.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "peekOfCode": "ROOT_URLCONF = 'server.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [os.path.join(BASE_DIR, \"templates\")],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
         "detail": "server.settings",
         "documentation": {}
     },
@@ -293,7 +350,7 @@
         "kind": 5,
         "importPath": "server.settings",
         "description": "server.settings",
-        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [os.path.join(BASE_DIR, \"templates\")],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
         "detail": "server.settings",
         "documentation": {}
     },
@@ -401,7 +458,7 @@
         "kind": 2,
         "importPath": "server.urls",
         "description": "server.urls",
-        "peekOfCode": "def combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nurlpatterns = combine_lists(\n    [\n        path('admin/', admin.site.urls),\n        path('upload/', include('img_convert.urls'), name=\"upload\"),\n    ],\n    [],\n    static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\n)",
+        "peekOfCode": "def combine_lists(*lists):\n    return [item for sublist in lists for item in sublist]\nurlpatterns = combine_lists(\n    [\n        path('admin/', admin.site.urls),\n        path('upload/', include('img_convert.urls'), name=\"upload\"),\n    ],\n    [\n        path('api/token/', TokenObtainPairView.as_view(),\n             name='token_obtain_pair'),",
         "detail": "server.urls",
         "documentation": {}
     },
@@ -410,7 +467,7 @@
         "kind": 5,
         "importPath": "server.urls",
         "description": "server.urls",
-        "peekOfCode": "urlpatterns = combine_lists(\n    [\n        path('admin/', admin.site.urls),\n        path('upload/', include('img_convert.urls'), name=\"upload\"),\n    ],\n    [],\n    static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\n)",
+        "peekOfCode": "urlpatterns = combine_lists(\n    [\n        path('admin/', admin.site.urls),\n        path('upload/', include('img_convert.urls'), name=\"upload\"),\n    ],\n    [\n        path('api/token/', TokenObtainPairView.as_view(),\n             name='token_obtain_pair'),\n        path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),\n        path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),",
         "detail": "server.urls",
         "documentation": {}
     },
@@ -421,6 +478,24 @@
         "description": "server.wsgi",
         "peekOfCode": "application = get_wsgi_application()",
         "detail": "server.wsgi",
+        "documentation": {}
+    },
+    {
+        "label": "jwt_check",
+        "kind": 2,
+        "importPath": "shared.decorators.jwt_check",
+        "description": "shared.decorators.jwt_check",
+        "peekOfCode": "def jwt_check(func):\n    def wrapper(request, *args, **kwargs):\n        response = JWT_authenticator.authenticate(request)\n        if response is not None:\n            # unpacking\n            user, token = response\n            request.user = user\n            return func(request, *args, **kwargs)\n        else:\n            # return 401 if no token is provided",
+        "detail": "shared.decorators.jwt_check",
+        "documentation": {}
+    },
+    {
+        "label": "JWT_authenticator",
+        "kind": 5,
+        "importPath": "shared.decorators.jwt_check",
+        "description": "shared.decorators.jwt_check",
+        "peekOfCode": "JWT_authenticator = JWTAuthentication()\n# create a decorator that checks for jwt token\ndef jwt_check(func):\n    def wrapper(request, *args, **kwargs):\n        response = JWT_authenticator.authenticate(request)\n        if response is not None:\n            # unpacking\n            user, token = response\n            request.user = user\n            return func(request, *args, **kwargs)",
+        "detail": "shared.decorators.jwt_check",
         "documentation": {}
     },
     {

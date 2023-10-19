@@ -47,9 +47,10 @@ def combine_lists(*lists):
 
 INSTALLED_APPS = combine_lists(
     [
+        'img_convert.apps.ImgConvertConfig',
     ],
     [
-        'img_convert.apps.ImgConvertConfig',
+        'rest_framework_simplejwt',
     ],
     [
         'django.contrib.admin',
@@ -76,7 +77,7 @@ ROOT_URLCONF = 'server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
