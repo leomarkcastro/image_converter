@@ -185,7 +185,7 @@
         "kind": 2,
         "importPath": "img_convert.views",
         "description": "img_convert.views",
-        "peekOfCode": "def simple_upload(request):\n    if request.method == 'POST' and request.FILES['myfile']:\n        myfile = request.FILES['myfile']\n        fs = FileSystemStorage(\n            location=\"./converted_images\"\n        )\n        filename = fs.save(myfile.name, myfile)\n        uploaded_file_url = fs.url(filename)\n        # get file location in server\n        file_location = fs.path(filename)",
+        "peekOfCode": "def simple_upload(request):\n    if request.method == 'POST' and request.FILES['myfile']:\n        myfile = request.FILES['myfile']\n        fs = FileSystemStorage(\n            location=\"./converted_images\"\n        )\n        filename = fs.save(myfile.name, myfile)\n        # get file location in server\n        file_location = fs.path(filename)\n        jpg_to_png = file_location.replace(\".jpg\", \".png\")",
         "detail": "img_convert.views",
         "documentation": {}
     },

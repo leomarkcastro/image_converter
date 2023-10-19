@@ -17,22 +17,12 @@ def simple_upload(request):
         )
         filename = fs.save(myfile.name, myfile)
 
-        uploaded_file_url = fs.url(filename)
-
         # get file location in server
         file_location = fs.path(filename)
         jpg_to_png = file_location.replace(".jpg", ".png")
         convert(file_location, jpg_to_png)
 
-        # get png file url
-        uploaded_file_url = fs.url(jpg_to_png)
-
-        # return render(request, 'core/index.html', {
-        #     'uploaded_file_url': uploaded_file_url
-        # })
-
         # send file back to client via http response
-
         with open(jpg_to_png, 'rb') as fh:
             response = HttpResponse(fh.read(), content_type="image/png")
             response['Content-Disposition'] = 'inline; filename=' + \
